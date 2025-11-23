@@ -155,38 +155,46 @@ function preToInConverter(input) {
 
 
 
-// formEl.addEventListener("submit", e => {
-//   e.preventDefault();
-//   const input = inputEl.value;
-//   const start = startEquationEl.value;
-//   const end = endEquationEl.value;
-//   if (start === "infix" && end === "postfix") {
-//     const output = inToPostConverter(input);
-//     addToHistory(input, output);
-//   }
-//   else if (start === "infix" && end === "prefix") {
-//     const output = inToPreConverter(input);
-//     addToHistory(input, output);
-//   }
-//   else if (start === "postfix" && end === "infix") {
-//     const output = postToInConverter(input);
-//     addToHistory(input, output);
-//   }
-//   else if (start === "postfix" && end === "prefix") {
-//     const output = postToInConverter(input);
-//     const output2 = inToPreConverter(output);
-//     addToHistory(input, output2);
-//   }
-//   else if (start === "prefix" && end === "infix") {
-//     const output = preToInConverter(input);
-//     addToHistory(input, output);
-//   }
-//   else if (start === "prefix" && end === "postfix") {
-//     const output = preToInConverter(input);
-//     const output2 = inToPostConverter(output);
-//     addToHistory(input, output2);
-//   }
-// });
+formEl.addEventListener("submit", e => {
+  e.preventDefault();
+  const input = inputEl.value;
+  const start = startEquationEl.value;
+  const end = endEquationEl.value;
+  if (start === "infix" && end === "postfix") {
+    const output = inToPostConverter(input);
+    createTree(output);
+    addToHistory(input, output);
+  }
+  else if (start === "infix" && end === "prefix") {
+    const output = inToPostConverter(input);
+    createTree(output);
+    const output2 = inToPreConverter(input);
+    addToHistory(input, output);
+  }
+  else if (start === "postfix" && end === "infix") {
+    createTree(output);
+    const output = postToInConverter(input);
+    addToHistory(input, output);
+  }
+  else if (start === "postfix" && end === "prefix") {
+    createTree(output);
+    const output = postToInConverter(input);
+    const output2 = inToPreConverter(output);
+    addToHistory(input, output2);
+  }
+  else if (start === "prefix" && end === "infix") {
+    const output = preToInConverter(input);
+    const output2 = inToPostConverter(input);
+    createTree(output2);
+    addToHistory(input, output);
+  }
+  else if (start === "prefix" && end === "postfix") {
+    createTree(output);
+    const output = preToInConverter(input);
+    const output2 = inToPostConverter(output);
+    addToHistory(input, output2);
+  }
+});
 /* 
   so im gonna try to get whatever the input is, convert to postfix, 
   then build a literally binary tree with that postfix, then use dom 

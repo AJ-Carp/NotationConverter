@@ -10,75 +10,54 @@
   position: absolute;
 }
 
-/* Outer container */
-#tree {
-  margin-top: 2rem;
+/* ===== TREE AREA ===== */
+#tree-wrapper {
+  position: relative;
   display: flex;
   justify-content: center;
+  margin-top: 24px;
+  padding: 24px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.18);
+  min-height: 200px;
+  overflow: auto;
+}
+
+#tree {
+  position: relative;
+  z-index: 1;
+  transform-origin: top center;
   font-family: system-ui, sans-serif;
 }
 
-/* Each node: value on top, children row under it */
+#tree-lines {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* tree layout */
 .tree-node {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4rem;
+  gap: 2.5rem;
 }
 
-/* The circle/box that shows the value */
 .tree-label {
-  padding: 1rem;
-  border: 2px solid #333;
-  border-radius: 999px;   /* makes it pill/circle-ish */
-  min-width: 1.2rem;
+  padding: 0.5rem 0.9rem;
+  border: 2px solid #111827;
+  border-radius: 999px;
+  min-width: 1.5rem;
   text-align: center;
   font-weight: 600;
-  position: relative;
+  background: #ffffff;
 }
 
-/* Container for left/right children */
 .tree-children {
   display: flex;
   justify-content: center;
-  gap: 4rem;              /* spacing between left and right subtrees */
-  position: relative;
+  gap: 4rem;
 }
-
-/* Optional: shrink things a bit for big trees */
-#tree {
-  transform: scale(0.95);
-  transform-origin: top center;
-}
-
-.operatorLine {
-  width: 3px;
-  height: 35px;
-  background-color: black;
-  display: inline-block;
-  position: absolute;
-  bottom: -35px;
-  left: 25px;
-}
-
-.operandLine {
-  width: 3px;
-  height: 35px;
-  background-color: black;
-  display: inline-block;
-  position: absolute;
-  top: -35px;
-  left: 25px;
-}
-
-.horizontalLine {
-  width: 100%;
-  height: 3px;
-  background-color: black;
-  display: inline-block;
-  position: absolute;
-}
-
-/* i think i need some sort of container to wrap directly only 
-around the children without being any wider and then we can use 
-this to positon the horizontal line relativly */

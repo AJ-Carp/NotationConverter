@@ -1,5 +1,5 @@
 function isOperator(token) {
-  return token === '+' || token === '-' || token === '*' || token === '/';
+  return ["+", "-", "*", "/"].includes(token);
 }
 
 function precedence(operator) {
@@ -29,25 +29,36 @@ function removeExtraParentheses(output) {
 }
 
 
-// LEARN CODE FROM SAMPLE.HTML AND INCORPORATE HERE
+
+
+
+
 const treeContainer = document.getElementById("tree");
+const treeWrapper = document.getElementById("tree-wrapper");
+const svg = document.getElementById("tree-lines");
 
 function createTree(expression) {
   const stack = [];
   const tokens = expression.trim().split(/\s+/);
 
+  // ("" and " ") get trimmed to "" which is falsy, so !"" is truthy
+  // so this if block executes when string is empty or only white space
+  if (!expression.trim()) {
+    treeContainer.innerHTML = "";
+    clearLines();
+    return;
+  }
+
   for (const token of tokens) {
     if (isOperator(token)) {
-      // right and left are already DOM subtrees now
       const right = stack.pop();
       const left = stack.pop();
 
-      // const rightLine = document.createElement("span");
-      // const leftLine = document.createElement("span");
-      // rightLine.classList.add("rightLine");
-      // leftLine.classList.add("leftLine");
-      // right.appendChild(rightLine);
-      // left.appendChild(leftLine);
+      // if left or right are null or undefined
+      if (!left || !right) {
+        console.error("Invalid postfix expression");
+        return;
+      }
 
       const parent = document.createElement("div");
       parent.classList.add("tree-node");
@@ -56,18 +67,10 @@ function createTree(expression) {
       label.classList.add("tree-label");
       label.textContent = token;
 
-      const operatorLine = document.createElement("span");     
-      operatorLine.classList.add("operatorLine");
-      label.appendChild(operatorLine);
-
       const children = document.createElement("div");
       children.classList.add("tree-children");
       children.appendChild(left);
       children.appendChild(right);
-
-      const horizontalLine = document.createElement("span");     
-      horizontalLine.classList.add("horizontalLine");
-      children.appendChild(horizontalLine);
 
       parent.appendChild(label);
       parent.appendChild(children);
@@ -82,20 +85,94 @@ function createTree(expression) {
       label.classList.add("tree-label");
       label.textContent = token;
 
-      const operandLine = document.createElement("span");     
-      operandLine.classList.add("operandLine");
-      label.appendChild(operandLine);
-
       leaf.appendChild(label);
       stack.push(leaf);
     }
   }
 
   const root = stack.pop();
-  treeContainer.innerHTML = "";     // clear old tree
-  treeContainer.appendChild(root);  // show new tree
+  if (stack.length !== 0) {
+    console.error("Invalid postfix expression");
+    return;
+  }
+
+  treeContainer.innerHTML = "";
+  treeContainer.appendChild(root);
+
+  // Defer drawing lines until layout is done
+  // eliminates risk of lines being drawn in wrong places
+  window.requestAnimationFrame(drawTreeLines);
 }
 
+// removes connector lines
+function clearLines() {
+  while (svg.firstChild) svg.removeChild(svg.firstChild);
+}
 
-createTree("A B C - D E + * +");
-// A + (B - C) * (D + E)
+function drawTreeLines() {
+  clearLines();
+
+  // set svg to have same dimensions as treeWrapper
+  const wrapperRect = treeWrapper.getBoundingClientRect();
+  svg.setAttribute("width", wrapperRect.width);
+  svg.setAttribute("height", wrapperRect.height);
+
+  // parents contains array of all elements with class .tree-node
+  const parents = treeContainer.querySelectorAll(".tree-node");
+
+  // enhanced for loop
+  parents.forEach((parent) => {
+    // looking for direct children inside the current parent with the class tree-children
+    const childrenContainer = parent.querySelector(":scope > .tree-children");
+
+    // if empty, goes to next iteration. Remember we are inside an arrow function
+    if (!childrenContainer) return;
+
+    const parentLabel = parent.querySelector(":scope > .tree-label");
+    if (!parentLabel) return;
+
+    const parentRect = parentLabel.getBoundingClientRect();
+    // horizontal distance from left edge of wrapper to center of label
+    const parentX = parentRect.left + parentRect.width / 2 - wrapperRect.left;
+
+    // vertical distance from the TOP EDGE of the wrapper to the BOTTOM of the parent label.
+    const parentY = parentRect.bottom - wrapperRect.top;
+
+    const childNodes = childrenContainer.querySelectorAll(":scope > .tree-node");
+    childNodes.forEach((child) => {
+      const childLabel = child.querySelector(":scope > .tree-label");
+      if (!childLabel) return;
+
+      const childRect = childLabel.getBoundingClientRect();
+      // horizontal distance from left edge of wrapper to center of label
+      const childX = childRect.left + childRect.width / 2 - wrapperRect.left;
+      // vertical distance from the TOP EDGE of the wrapper to the top of the child label.
+      const childY = childRect.top - wrapperRect.top;
+
+      const line = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "line"
+      );
+      /* so this: line.setAttribute("y1", parentY); line.setAttribute("x1", parentX); is like saying 
+         postition one end point of the line at x1 distance away from 
+         the left of the svg and y1 distance away from the top of the svg whereever the lines 
+         meet will be one of our coordinates */
+      line.setAttribute("y1", parentY);               
+      line.setAttribute("x1", parentX);
+      line.setAttribute("y1", parentY);
+      line.setAttribute("x2", childX);
+      line.setAttribute("y2", childY);
+      line.setAttribute("stroke", "black");
+      line.setAttribute("stroke-width", "2");
+      svg.appendChild(line);
+    });
+  });
+}
+
+// Redraw lines if window resizes
+window.addEventListener("resize", () => {
+  // firstChild is first element or text node listed vertically
+  if (treeContainer.firstChild) {
+    requestAnimationFrame(drawTreeLines);
+  }
+});
