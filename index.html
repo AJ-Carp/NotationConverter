@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <form id="form">
+    <select id="startEquation">
+      <option value="infix">infix</option>
+      <option value="postfix">postfix</option>
+      <option value="prefix">prefix</option>
+    </select>
+    ->
+    <select id="endEquation">
+      <option value="infix">infix</option>
+      <option value="postfix">postfix</option>
+      <option value="prefix">prefix</option>
+    </select><br><br>
+    Enter equation:<br>
+    <input id="input" type="text">
+    <input type="submit">
+  </form>
+  <p id="output"></p>
+
+  <div id="history">
+    <h3>History:</h3>
+  </div>
+
+  <div id="tree"></div>
+
+  <script src="helperFunctions.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>

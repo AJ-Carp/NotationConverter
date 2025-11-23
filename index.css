@@ -1,0 +1,84 @@
+.set {
+  margin: 60px 0 60px 0;
+}
+
+#history {
+  margin-top: 50px;
+}
+
+#output {
+  position: absolute;
+}
+
+/* Outer container */
+#tree {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  font-family: system-ui, sans-serif;
+}
+
+/* Each node: value on top, children row under it */
+.tree-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+}
+
+/* The circle/box that shows the value */
+.tree-label {
+  padding: 1rem;
+  border: 2px solid #333;
+  border-radius: 999px;   /* makes it pill/circle-ish */
+  min-width: 1.2rem;
+  text-align: center;
+  font-weight: 600;
+  position: relative;
+}
+
+/* Container for left/right children */
+.tree-children {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;              /* spacing between left and right subtrees */
+  position: relative;
+}
+
+/* Optional: shrink things a bit for big trees */
+#tree {
+  transform: scale(0.95);
+  transform-origin: top center;
+}
+
+.operatorLine {
+  width: 3px;
+  height: 35px;
+  background-color: black;
+  display: inline-block;
+  position: absolute;
+  bottom: -35px;
+  left: 25px;
+}
+
+.operandLine {
+  width: 3px;
+  height: 35px;
+  background-color: black;
+  display: inline-block;
+  position: absolute;
+  top: -35px;
+  left: 25px;
+}
+
+.horizontalLine {
+  width: 100%;
+  height: 3px;
+  background-color: black;
+  display: inline-block;
+  position: absolute;
+}
+
+/* i think i need some sort of container to wrap directly only 
+around the children without being any wider and then we can use 
+this to positon the horizontal line relativly */
