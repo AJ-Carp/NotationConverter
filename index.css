@@ -6,9 +6,9 @@
   margin-top: 50px;
 }
 
-#output {
+/* #output {
   position: absolute;
-}
+} */
 
 /* ===== TREE AREA ===== */
 #tree-wrapper {
@@ -21,13 +21,13 @@
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.18);
   min-height: 200px;
+  /* content will not overflow but scroll bar appears */
   overflow: auto;
 }
 
 #tree {
   position: relative;
   z-index: 1;
-  transform-origin: top center;
   font-family: system-ui, sans-serif;
 }
 
@@ -58,6 +58,5 @@
 
 .tree-children {
   display: flex;
-  justify-content: center;
   gap: 4rem;
 }
