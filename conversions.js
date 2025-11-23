@@ -49,7 +49,6 @@ function inToPostConverter(input) {
   }
   // Return final postfix string
   output = output.trim();
-  outputEl.textContent = output
   return output;
 }
 
@@ -102,7 +101,6 @@ function inToPreConverter(input) {
  // reverse the array
  // join the array elements back into single string with space inbetween each element
  output = output.trim().split(/\s+/).reverse().join(" ");
- outputEl.textContent = output;
  return output;
 }
 
@@ -125,7 +123,6 @@ function postToInConverter(input) {
     }
   }
   let output = removeExtraParentheses(stack.pop());
-  outputEl.textContent = output;
   return output;
 }
 
@@ -149,7 +146,6 @@ function preToInConverter(input) {
     }
   }
   let output = removeExtraParentheses(stack.pop());
-  outputEl.textContent = output;
   return output;
 }
 
@@ -160,46 +156,43 @@ formEl.addEventListener("submit", e => {
   const input = inputEl.value;
   const start = startEquationEl.value;
   const end = endEquationEl.value;
+  let output;
+  
   if (start === "infix" && end === "postfix") {
-    const output = inToPostConverter(input);
-    createTree(output);
-    addToHistory(input, output);
+    output = inToPostConverter(input);
+    if (createTree(output) === "error") return;
   }
   else if (start === "infix" && end === "prefix") {
-    const output = inToPostConverter(input);
-    createTree(output);
-    const output2 = inToPreConverter(input);
-    addToHistory(input, output);
+    output = inToPostConverter(input);
+    if (createTree(output) === "error") return;
+    output = inToPreConverter(input);
   }
   else if (start === "postfix" && end === "infix") {
-    createTree(output);
-    const output = postToInConverter(input);
-    addToHistory(input, output);
+    if (createTree(input) === "error") return;
+    output = postToInConverter(input);
   }
   else if (start === "postfix" && end === "prefix") {
-    createTree(output);
-    const output = postToInConverter(input);
-    const output2 = inToPreConverter(output);
-    addToHistory(input, output2);
+    if (createTree(input) === "error") return;
+    output = postToInConverter(input);
+    output = inToPreConverter(output);
   }
   else if (start === "prefix" && end === "infix") {
-    const output = preToInConverter(input);
-    const output2 = inToPostConverter(input);
-    createTree(output2);
-    addToHistory(input, output);
+    output = preToInConverter(input);
+    const output2 = inToPostConverter(output);
+    if (createTree(output2) === "error") return;
   }
   else if (start === "prefix" && end === "postfix") {
-    createTree(output);
-    const output = preToInConverter(input);
-    const output2 = inToPostConverter(output);
-    addToHistory(input, output2);
+    output = preToInConverter(input);
+    output = inToPostConverter(output);
+    if (createTree(output) === "error") return;
   }
-});
-/* 
-  so im gonna try to get whatever the input is, convert to postfix, 
-  then build a literally binary tree with that postfix, then use dom 
-  manipulation to disaplay the actual tree diagram to the user on the 
-  screen. Sounds a bit advnaced though 
-*/
+
+  outputEl.textContent = output;
+  if (start !== end)  {
+    addToHistory(input, output);
+  }
+});  
+
+// POSSIBLE IMPROVEMENT: could make each conversion function check for invalid expression rather then createTree
 
 // could also build the table that other websites do

@@ -46,7 +46,7 @@ function createTree(expression) {
   if (!expression.trim()) {
     treeContainer.innerHTML = "";
     clearLines();
-    return;
+    return "error";
   }
 
   for (const token of tokens) {
@@ -57,7 +57,7 @@ function createTree(expression) {
       // if left or right are null or undefined
       if (!left || !right) {
         console.error("Invalid postfix expression");
-        return;
+        return "error";
       }
 
       const parent = document.createElement("div");
@@ -93,7 +93,7 @@ function createTree(expression) {
   const root = stack.pop();
   if (stack.length !== 0) {
     console.error("Invalid postfix expression");
-    return;
+    return "error";
   }
 
   treeContainer.innerHTML = "";

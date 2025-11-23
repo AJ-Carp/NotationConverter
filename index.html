@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Notation Converter</title>
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
@@ -16,25 +16,29 @@
     ->
     <select id="endEquation">
       <option value="infix">infix</option>
-      <option value="postfix">postfix</option>
+      <option value="postfix" selected>postfix</option>
       <option value="prefix">prefix</option>
     </select><br><br>
-    Enter equation:<br>
+    Enter expression:<br>
     <input id="input" type="text">
     <input type="submit">
   </form>
-  <p id="output"></p>
-
-  <div id="history">
-    <h3>History:</h3>
-  </div>
+  <span id="output"></span>
 
   <div id="tree-wrapper">
     <div id="tree"></div>
     <svg id="tree-lines"></svg>
   </div>
 
+  <div id="history">
+    <h3>History:</h3>
+  </div>
+
   <script src="helperFunctions.js"></script>
   <script src="conversions.js"></script>
 </body>
 </html>
+
+<!-- add a way to remove certain part of history or clear all history -->
+<!-- maybe add instructions on how to view the tree to better understand the equations -->
+<!-- styling -->
