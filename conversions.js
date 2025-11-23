@@ -1,7 +1,6 @@
 const formEl = document.getElementById("form");
 const outputEl = document.getElementById("output");
 const inputEl = document.getElementById("input");
-const historyEl = document.getElementById("history");
 const startEquationEl = document.getElementById("startEquation");
 const endEquationEl = document.getElementById("endEquation");
 
@@ -189,7 +188,7 @@ formEl.addEventListener("submit", e => {
 
   outputEl.textContent = output;
   if (start !== end)  {
-    addToHistory(input, output);
+    addToHistory(input, output, start, end);
   }
 });  
 

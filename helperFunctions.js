@@ -7,17 +7,37 @@ function precedence(operator) {
   else return 2; // * or /
 }
 
-function addToHistory(input, output) {
+function addToHistory(input, output, start, end) {
   const set = document.createElement("div");
+  const removeEntry = document.createElement("button");
+  removeEntry.textContent = "X";
+  removeEntry.classList.add("removeEntry");
+  set.appendChild(removeEntry);
   set.classList.add("set");
+  const equations = document.createElement("div");
   const inEquation = document.createElement("p");
-  inEquation.textContent = input;
+  inEquation.textContent = `${start}: ${input}`;
   const outEquation = document.createElement("p");
-  outEquation.textContent = output;
-  set.appendChild(inEquation);
-  set.appendChild(outEquation);
-  historyEl.appendChild(set);
+  outEquation.textContent = `${end}: ${output}`;
+  equations.appendChild(inEquation);
+  equations.appendChild(outEquation);
+  set.appendChild(equations);
+  historyContainerEl.appendChild(set);
 }
+
+const historyEl = document.getElementById("history");
+const historyContainerEl = document.getElementById("historyContainer");
+historyEl.addEventListener("click", e => {
+  const button = e.target;
+  if (button.classList.contains("removeEntry")) {
+    historyContainerEl.removeChild(button.parentElement);
+  }
+  else if (button.classList.contains("clearHistory")) {
+    historyContainerEl.innerHTML = "";
+  }
+});
+
+
 
 function removeExtraParentheses(output) {
   output = output.split(" ");

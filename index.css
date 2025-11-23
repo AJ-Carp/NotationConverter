@@ -1,14 +1,20 @@
+
 .set {
-  margin: 60px 0 60px 0;
+  margin-top: 40 0 -20px 0;
+  border-top: solid;
+  display: flex;
+  align-items: center;
+}
+
+.removeEntry {
+  margin-right: 10px;
+  height: 23px;
+  border-radius: 20px;
 }
 
 #history {
   margin-top: 50px;
 }
-
-/* #output {
-  position: absolute;
-} */
 
 /* ===== TREE AREA ===== */
 #tree-wrapper {
@@ -60,3 +66,4 @@
   display: flex;
   gap: 4rem;
 }
+
