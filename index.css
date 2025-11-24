@@ -1,4 +1,65 @@
+* {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
+body {
+  background-color: rgb(60, 60, 60);
+}
+
+.formContainer {
+  display: flex;
+}
+
+#arrow {
+  width: 130px;
+  height: 60px;
+  margin: 0 10px -8px 10px;;
+
+}
+
+#input, #output {
+  width: 300px;
+  height: 25px;
+  border: none;
+  border-width: 1px;
+  border-radius: 20px;
+  margin: 0;
+  padding: 10px 15px;
+  background-color: rgb(31, 31, 31);
+  font-size: 20px;
+}
+
+#startEquation, #endEquation {
+  width: 100px;
+  padding: 10px;
+  margin-bottom: 0;
+  border-bottom: none;
+  border-radius: 15px 15px 0 0;
+  background-color: rgb(31, 31, 31);
+  border: none;
+}
+
+#formContainer {
+  display: flex;
+  align-items: end;
+}
+
+.equationContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#submit {
+  background-color: rgb(121, 189, 132);
+  border: none;
+  border-radius: 20px;
+  padding: 7px 10px;
+  margin-top: 10px;
+}
+
+/* ===== EQUATION HISTORY ===== */
 .set {
   margin-top: 40 0 -20px 0;
   border-top: solid;
@@ -23,12 +84,13 @@
   justify-content: center;
   margin-top: 24px;
   padding: 24px;
-  background: white;
+  background: rgb(31, 31, 31);
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.18);
   min-height: 200px;
   /* content will not overflow but scroll bar appears */
   overflow: auto;
+
 }
 
 #tree {
@@ -59,7 +121,7 @@
   min-width: 1.5rem;
   text-align: center;
   font-weight: 600;
-  background: #ffffff;
+  background: rgb(121, 189, 132);
 }
 
 .tree-children {

@@ -182,7 +182,7 @@ function drawTreeLines() {
       line.setAttribute("y1", parentY);
       line.setAttribute("x2", childX);
       line.setAttribute("y2", childY);
-      line.setAttribute("stroke", "black");
+      line.setAttribute("stroke", "rgb(121, 189, 132)");
       line.setAttribute("stroke-width", "2");
       svg.appendChild(line);
     });

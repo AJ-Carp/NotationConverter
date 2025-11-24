@@ -8,22 +8,27 @@
 </head>
 <body>
   <form id="form">
-    <select id="startEquation">
-      <option value="infix">infix</option>
-      <option value="postfix">postfix</option>
-      <option value="prefix">prefix</option>
-    </select>
-    ->
-    <select id="endEquation">
-      <option value="infix">infix</option>
-      <option value="postfix" selected>postfix</option>
-      <option value="prefix">prefix</option>
-    </select><br><br>
-    Enter expression:<br>
-    <input id="input" type="text">
-    <input type="submit">
+    <div id="formContainer">
+      <div class="equationContainer">
+        <select id="startEquation">
+          <option value="infix">Infix</option>
+          <option value="postfix">Postfix</option>
+          <option value="prefix">Prefix</option>
+        </select>
+        <input placeholder="Enter expression here" id="input" type="text">
+      </div>
+      <img id="arrow" src="img/arrow.png">
+      <div class="equationContainer">
+        <select id="endEquation">
+          <option value="infix">Infix</option>
+          <option value="postfix" selected>Postfix</option>
+          <option value="prefix">Prefix</option>
+        </select>
+        <p id="output"></p>
+      </div>
+    </div>
+    <input id="submit" type="submit" value="Convert">
   </form>
-  <span id="output"></span>
 
   <div id="tree-wrapper">
     <div id="tree"></div>
@@ -40,6 +45,8 @@
 </body>
 </html>
 
-<!-- add a way to remove certain part of history or clear all history -->
 <!-- maybe add instructions on how to view the tree to better understand the equations -->
 <!-- styling -->
+<!-- scroll bars that appear in tree window should be black -->
+<!-- input box shouldnt turn white ever -->
+<!-- make popout side menue thing for history -->
