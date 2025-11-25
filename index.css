@@ -10,6 +10,7 @@ body {
 #form {
   display: flex;
   justify-content: center;
+  margin-top: 50px;
 }
 
 .formContainer {
@@ -36,6 +37,8 @@ body {
   padding: 10px 15px;
   background-color: rgb(31, 31, 31);
   font-size: 20px;
+  display: flex;
+  align-items: center;
 }
 
 #startEquation:focus,
@@ -93,14 +96,12 @@ input:-webkit-autofill:active {
 @media (max-width: 753px) {
   #input, #output {
     width: 200px;
-    font-size: 15px;
   }
 }
 
 @media (max-width: 677px) {
   #input, #output {
     width: 190px;
-    font-size: 15px;
   }
 }
 
@@ -108,6 +109,7 @@ input:-webkit-autofill:active {
   #formContainer {
     flex-direction: column;
     align-items: center;
+    gap: 15px;
   }
 
   #input, #output {
@@ -116,9 +118,9 @@ input:-webkit-autofill:active {
 
   #arrow {
     transform: rotate(90deg);
-    width: 130px;
-    height: 60px;
-    margin: 0 10px -8px 10px;
+    width: 75px;
+    height: 50px;
+    margin: -14px 10px -8px 10px;
   }
 }
 
@@ -127,18 +129,33 @@ input:-webkit-autofill:active {
 .set {
   margin-top: 40 0 -20px 0;
   border-top: solid;
+  border-top-color: black;
+  border-top-width: 2px;
   display: flex;
   align-items: center;
 }
 
 .removeEntry {
   margin-right: 10px;
-  height: 23px;
+  height: 20px;
+  background-color: rgb(121, 189, 132);
+  border: none;
   border-radius: 20px;
+
 }
 
 #history {
   margin-top: 50px;
+  margin: 24px;
+}
+
+#clearHistory {
+  margin: 30px 0 15px 0;
+  padding: 7px 10px;
+  background-color: rgb(121, 189, 132);
+  border: none;
+  border-radius: 20px;
+
 }
 
 /* ===== TREE AREA ===== */

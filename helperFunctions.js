@@ -32,7 +32,7 @@ historyEl.addEventListener("click", e => {
   if (button.classList.contains("removeEntry")) {
     historyContainerEl.removeChild(button.parentElement);
   }
-  else if (button.classList.contains("clearHistory")) {
+  else if (button.id === "clearHistory") {
     historyContainerEl.innerHTML = "";
   }
 });

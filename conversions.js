@@ -157,30 +157,30 @@ formEl.addEventListener("submit", e => {
   const end = endEquationEl.value;
   let output;
   
-  if (start === "infix" && end === "postfix") {
+  if (start === "Infix" && end === "Postfix") {
     output = inToPostConverter(input);
     if (createTree(output) === "error") return;
   }
-  else if (start === "infix" && end === "prefix") {
+  else if (start === "Infix" && end === "Prefix") {
     output = inToPostConverter(input);
     if (createTree(output) === "error") return;
     output = inToPreConverter(input);
   }
-  else if (start === "postfix" && end === "infix") {
+  else if (start === "Postfix" && end === "Infix") {
     if (createTree(input) === "error") return;
     output = postToInConverter(input);
   }
-  else if (start === "postfix" && end === "prefix") {
+  else if (start === "Postfix" && end === "Prefix") {
     if (createTree(input) === "error") return;
     output = postToInConverter(input);
     output = inToPreConverter(output);
   }
-  else if (start === "prefix" && end === "infix") {
+  else if (start === "Prefix" && end === "Infix") {
     output = preToInConverter(input);
     const output2 = inToPostConverter(output);
     if (createTree(output2) === "error") return;
   }
-  else if (start === "prefix" && end === "postfix") {
+  else if (start === "Prefix" && end === "Postfix") {
     output = preToInConverter(input);
     output = inToPostConverter(output);
     if (createTree(output) === "error") return;

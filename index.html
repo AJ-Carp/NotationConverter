@@ -12,18 +12,18 @@
       <div id="formContainer">
         <div class="equationContainer">
           <select id="startEquation">
-            <option value="infix">Infix</option>
-            <option value="postfix">Postfix</option>
-            <option value="prefix">Prefix</option>
+            <option value="Infix">Infix</option>
+            <option value="Postfix">Postfix</option>
+            <option value="Prefix">Prefix</option>
           </select>
           <input placeholder="Enter expression here" id="input" type="text">
         </div>
         <img id="arrow" src="img/arrow.png">
         <div class="equationContainer">
           <select id="endEquation">
-            <option value="infix">Infix</option>
-            <option value="postfix" selected>Postfix</option>
-            <option value="prefix">Prefix</option>
+            <option value="Infix">Infix</option>
+            <option value="Postfix" selected>Postfix</option>
+            <option value="Prefix">Prefix</option>
           </select>
           <p id="output"></p>
         </div>
@@ -38,7 +38,7 @@
   </div>
 
   <div id="history">
-    <button class="clearHistory">Clear History</button>
+    <button id="clearHistory">Clear History</button>
     <div id="historyContainer"></div>
   </div>
 
