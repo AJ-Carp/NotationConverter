@@ -7,6 +7,11 @@ body {
   background-color: rgb(60, 60, 60);
 }
 
+#form {
+  display: flex;
+  justify-content: center;
+}
+
 .formContainer {
   display: flex;
 }
@@ -14,12 +19,15 @@ body {
 #arrow {
   width: 130px;
   height: 60px;
-  margin: 0 10px -8px 10px;;
+  margin: 0 10px -8px 10px;
+}
 
+#alienMath {
+  width: 400px;
 }
 
 #input, #output {
-  width: 300px;
+  width: 280px;
   height: 25px;
   border: none;
   border-width: 1px;
@@ -28,6 +36,22 @@ body {
   padding: 10px 15px;
   background-color: rgb(31, 31, 31);
   font-size: 20px;
+}
+
+#startEquation:focus,
+#endEquation:focus,
+#input:focus {
+  outline: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-text-fill-color: white !important;
+  caret-color: white !important;
+  box-shadow: 0 0 0px 1000px rgb(31, 31, 31) inset !important;
+  outline: none;
 }
 
 #startEquation, #endEquation {
@@ -59,6 +83,46 @@ body {
   margin-top: 10px;
 }
 
+@media (max-width: 833px) {
+  #input, #output {
+    width: 240px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 753px) {
+  #input, #output {
+    width: 200px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 677px) {
+  #input, #output {
+    width: 190px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 655px) {
+  #formContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #input, #output {
+    width: 240px;
+  }
+
+  #arrow {
+    transform: rotate(90deg);
+    width: 130px;
+    height: 60px;
+    margin: 0 10px -8px 10px;
+  }
+}
+
+
 /* ===== EQUATION HISTORY ===== */
 .set {
   margin-top: 40 0 -20px 0;
@@ -82,15 +146,18 @@ body {
   position: relative;
   display: flex;
   justify-content: center;
-  margin-top: 24px;
+  margin: 24px;
   padding: 24px;
   background: rgb(31, 31, 31);
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.18);
-  min-height: 200px;
+  min-height: 250px;
   /* content will not overflow but scroll bar appears */
   overflow: auto;
+}
 
+#tree-wrapper {
+  scrollbar-color: rgb(60, 60, 60) rgb(31, 31, 31);
 }
 
 #tree {

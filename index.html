@@ -8,26 +8,28 @@
 </head>
 <body>
   <form id="form">
-    <div id="formContainer">
-      <div class="equationContainer">
-        <select id="startEquation">
-          <option value="infix">Infix</option>
-          <option value="postfix">Postfix</option>
-          <option value="prefix">Prefix</option>
-        </select>
-        <input placeholder="Enter expression here" id="input" type="text">
+    <div>
+      <div id="formContainer">
+        <div class="equationContainer">
+          <select id="startEquation">
+            <option value="infix">Infix</option>
+            <option value="postfix">Postfix</option>
+            <option value="prefix">Prefix</option>
+          </select>
+          <input placeholder="Enter expression here" id="input" type="text">
+        </div>
+        <img id="arrow" src="img/arrow.png">
+        <div class="equationContainer">
+          <select id="endEquation">
+            <option value="infix">Infix</option>
+            <option value="postfix" selected>Postfix</option>
+            <option value="prefix">Prefix</option>
+          </select>
+          <p id="output"></p>
+        </div>
       </div>
-      <img id="arrow" src="img/arrow.png">
-      <div class="equationContainer">
-        <select id="endEquation">
-          <option value="infix">Infix</option>
-          <option value="postfix" selected>Postfix</option>
-          <option value="prefix">Prefix</option>
-        </select>
-        <p id="output"></p>
-      </div>
+      <input id="submit" type="submit" value="Convert">
     </div>
-    <input id="submit" type="submit" value="Convert">
   </form>
 
   <div id="tree-wrapper">
@@ -47,6 +49,5 @@
 
 <!-- maybe add instructions on how to view the tree to better understand the equations -->
 <!-- styling -->
-<!-- scroll bars that appear in tree window should be black -->
-<!-- input box shouldnt turn white ever -->
+<!-- fix mobile -->
 <!-- make popout side menue thing for history -->
