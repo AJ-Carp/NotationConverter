@@ -78,6 +78,11 @@ input:-webkit-autofill:active {
   align-items: center;
 }
 
+#example {
+  margin: 16px 10px;
+  color: rgb(141, 141, 141);
+}
+
 #submit {
   background-color: rgb(121, 189, 132);
   border: none;
