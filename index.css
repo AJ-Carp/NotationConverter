@@ -127,6 +127,10 @@ input:-webkit-autofill:active {
     height: 50px;
     margin: -14px 10px -8px 10px;
   }
+
+  #startEquation, #endEquation {
+    padding: 20px;
+  }
 }
 
 
