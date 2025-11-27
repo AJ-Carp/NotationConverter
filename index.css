@@ -129,7 +129,7 @@ input:-webkit-autofill:active {
   }
 
   #startEquation, #endEquation {
-    height: 50px;
+    text-align: center;
   }
 }
 
